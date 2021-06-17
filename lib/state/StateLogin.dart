@@ -1,5 +1,6 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:finance/Dialogs/DialogAlert.dart';
+import 'package:finance/Dialogs/DialogSignOut.dart';
 import 'package:finance/Dialogs/DialogSynchronizing.dart';
 import 'package:finance/database/AppDatabase.dart';
 import 'package:finance/database/CategoryDao.dart';
@@ -72,11 +73,46 @@ class StateLogin extends GetxController {
   }
 
   Future signOut() async {
+
+    final connection = await getConnectivity();
+
+    if(connection){
+      try{
+        Get.dialog(
+            DialogSynchronizing(upload: true,),
+            barrierDismissible: false
+        );
+        await readyToUploadFile();
+
+        await readyToSignOut();
+      }catch(e){
+        Get.back();
+        Get.dialog(
+          DialogSignOut(message: 'signOutErrorSavingFileOnDrive'.tr, icon: Icons.error_outline,),
+        );
+      }
+    }else{
+      Get.dialog(
+        DialogSignOut(message: 'signOutNoNetWorking'.tr, icon: Icons.wifi_off,),
+      );
+    }
+
+  }
+
+  Future signingOutWithoutSaveOnDrive() async {
+    await readyToSignOut();
+  }
+
+  Future readyToSignOut() async {
+    await Future.wait([
+      SimpleRegisterDao().clearWholeStore(),
+      MonthSalaryDao().clearWholeStore(),
+      CategoryDao().clearWholeStore(),
+      CreditCardDao().clearWholeStore()
+    ]);
+
     await _userFirebase.signOut();
-    await SimpleRegisterDao().clearWholeStore();
-    await MonthSalaryDao().clearWholeStore();
-    await CategoryDao().clearWholeStore();
-    await CreditCardDao().clearWholeStore();
+
     Get.offAllNamed(Routes.LOGIN);
   }
 
@@ -89,19 +125,24 @@ class StateLogin extends GetxController {
     return false;
   }
 
+  Future readyToUploadFile() async {
+      final getIdFile = StorageUtil.getString(Constants.KEY_ID_File_DRIVE);
+      FilesDrive filesDrive = FilesDrive();
+
+      await filesDrive.uploadFile(idFile: getIdFile);
+  }
+
   Future uploadFile() async {
-    FilesDrive filesDrive = FilesDrive();
 
     final connection = await getConnectivity();
 
     if(connection){
-      final getIdFile = StorageUtil.getString(Constants.KEY_ID_File_DRIVE);
       Get.dialog(
           DialogSynchronizing(upload: true,),
           barrierDismissible: false
       );
       try{
-        await filesDrive.uploadFile(idFile: getIdFile);
+        await readyToUploadFile();
         Get.back();
         Get.dialog(
           DialogAlert(message: 'dialogUploadFileSuccess'.tr, icon: Icons.check,),
@@ -114,7 +155,7 @@ class StateLogin extends GetxController {
       }
     }else{
       Get.dialog(
-        DialogAlert(message: 'noNetwork'.tr, icon: Icons.network_wifi,),
+        DialogAlert(message: 'noNetwork'.tr, icon: Icons.wifi_off,),
       );
     }
   }

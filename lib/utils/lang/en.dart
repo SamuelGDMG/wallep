@@ -8,6 +8,13 @@ const Map<String, String> formCreditCard = {
   'confirmEditButtonFormCreditCard': 'Edit',
 };
 
+const Map<String, String> signOut = {
+  'signOutErrorSavingFileOnDrive': "It wasn't possible to save the data on drive. You Should try later or you can sign out without saving! \nIf the error appears again, contact the dev before you sign out.",
+  'signOutNoNetWorking': "You aren't connected to the network. You should try later or you can sign out without saving!",
+  'signOutButtonTryLater': 'To try later',
+  'signOutButtonWithoutSaving': 'Sign Out'
+};
+
 const Map<String, String> bottomBar = {
   'bottomHome': 'Home',
   'bottomCheckRegistersMonth': 'Check',
@@ -90,4 +97,5 @@ const Map<String, String> en = {
   ...formSimpleRegister,
   ...resumeCreditCard,
   ...onBoardingPage,
+  ...signOut
 };
