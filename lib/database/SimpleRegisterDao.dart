@@ -46,6 +46,31 @@ class SimpleRegisterDao {
 
   }
 
+  Future<List<SimpleRegister>> getSimpleRegisterByIdAndDate({required int selectedDateByMill, required idCreditCard}) async {
+    final filter = Filter.custom((record){
+      final data = record.value;
+
+      var selected = Jiffy.unix(selectedDateByMill);
+      var firstInstallment = Jiffy.unix(data["firstInstallment"]);
+      var lastInstallment = Jiffy.unix(data["lastInstallment"]);
+
+      if(firstInstallment.isSameOrBefore(selected, Units.MONTH) && lastInstallment.isSameOrAfter(selected, Units.MONTH) && data["idCategory"] == idCreditCard){
+        return true;
+      }
+
+      return false;
+    });
+
+    final finder = Finder(filter: filter);
+
+    final recordSnapshot = await _simpleRegister.find(await _db, finder: finder);
+
+    return recordSnapshot.map((e){
+
+      return SimpleRegister.fromMapDb(e.value, e.key);
+    }).toList();
+  }
+
   //<Map<String, dynamic>>
   Future reduceIncomeAndExpenseSimpleRegister({required int selectedDateByMill, required int lastMonthByMill}) async {
     final filter = Filter.custom((record){

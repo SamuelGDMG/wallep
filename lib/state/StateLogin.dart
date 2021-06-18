@@ -10,6 +10,7 @@ import 'package:finance/database/SimpleRegisterDao.dart';
 import 'package:finance/routes/app_pages.dart';
 import 'package:finance/service/drive/FilesDrive.dart';
 import 'package:finance/service/user/user_firebase.dart';
+import 'package:finance/state/StateBottomAppBarIndex.dart';
 import 'package:finance/utils/Constants.dart';
 import 'package:finance/utils/StorageUtil.dart';
 import 'package:flutter/material.dart';
@@ -33,9 +34,7 @@ class StateLogin extends GetxController {
    try{
      var response = await _userFirebase.signInWithGoogle();
      if(response == null){
-       Get.dialog(
-         DialogAlert(message: 'tryAgainMsg'.tr, icon: Icons.error_outline,),
-       );
+
      }else if (!connection){
        Get.dialog(
          DialogAlert(message: 'noNetwork'.tr, icon: Icons.network_wifi,),
@@ -113,7 +112,11 @@ class StateLogin extends GetxController {
 
     await _userFirebase.signOut();
 
+    StateBottomAppBarIndex _stateBottomAppBarIndex = Get.find();
+
     Get.offAllNamed(Routes.LOGIN);
+
+    _stateBottomAppBarIndex.setBottomAppBarIndex(0);
   }
 
   Future<bool> getConnectivity() async {

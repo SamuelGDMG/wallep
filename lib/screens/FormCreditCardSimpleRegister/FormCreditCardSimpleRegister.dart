@@ -14,6 +14,17 @@ class FormCreditCardSimpleRegister extends StatelessWidget {
   final minDate = DateTime(2019);
   final idCreditCard;
   final simpleRegister;
+
+  final formSimpleRegisterLabelDescription = 'formSimpleRegisterLabelDescription'.tr;
+  final formSimpleRegisterLabelPrice = 'formSimpleRegisterLabelPrice'.tr;
+  final formSimpleRegisterLabelCalendar = 'formSimpleRegisterLabelCalendar'.tr;
+  final formSimpleRegisterLabelInstallments = 'formSimpleRegisterLabelInstallments'.tr;
+  final formSimpleRegisterValidationDescription = 'formSimpleRegisterValidationDescription'.tr;
+  final formSimpleRegisterAddButton = 'formSimpleRegisterAddButton'.tr;
+  final formSimpleRegisterCancelButton = 'formSimpleRegisterCancelButton'.tr;
+  final formSimpleRegisterTextExpense = 'formSimpleRegisterTextExpense'.tr;
+  final formSimpleRegisterTextIncome = 'formSimpleRegisterTextIncome'.tr;
+
   final currency = 'currency'.tr;
 
   FormCreditCardSimpleRegister({required this.idCreditCard, this.simpleRegister});
@@ -26,7 +37,7 @@ class FormCreditCardSimpleRegister extends StatelessWidget {
     return Scaffold(
       backgroundColor: Get.theme.backgroundColor,
       appBar: AppBar(
-        title: Text("Teste"),
+        title: Text(simpleRegister != null ? simpleRegister.name : 'cardSimpleRegisterExpense'.tr),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -48,16 +59,16 @@ class FormCreditCardSimpleRegister extends StatelessWidget {
                       maxLength: 20,
                       controller: _stateCreditCardSimpleRegister.controllerName.value,
                       keyboardType: TextInputType.text,
-                      labelText: "Description",
+                      labelText: formSimpleRegisterLabelDescription,
                       defaultValidator: (value) {
                         if (value == '' || value == ' ') {
-                          return "You need add a description";
+                          return formSimpleRegisterValidationDescription;
                         }
                         return null;
                       },
                     )),
                     Obx(() => InputTextFormField(
-                      labelText: "Installments",
+                      labelText: formSimpleRegisterLabelInstallments,
                       onChange: (vale){
                         _stateCreditCardSimpleRegister.controllerInstallments.refresh();
                       },
@@ -74,7 +85,7 @@ class FormCreditCardSimpleRegister extends StatelessWidget {
                         onChange: (_){
                           _stateCreditCardSimpleRegister.controllerPrice.refresh();
                         },
-                        labelText: "Price",
+                        labelText: formSimpleRegisterLabelPrice,
                         keyboardType: TextInputType.number,
                         inputFormatters: <TextInputFormatter>[
                           CurrencyTextInputFormatter(
@@ -103,7 +114,7 @@ class FormCreditCardSimpleRegister extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("What month will you start to pay?", style: TextStyle(
+                        Text(formSimpleRegisterLabelCalendar, style: TextStyle(
                             fontSize: 16
                         ),),
                         Container(
@@ -138,7 +149,7 @@ class FormCreditCardSimpleRegister extends StatelessWidget {
                           onTap: (){
                           },
                           buttonColor: Colors.red,
-                          buttonTitle: "Cancel",
+                          buttonTitle: formSimpleRegisterCancelButton,
                         ),
                         SizedBox(
                           width: 6,
@@ -148,7 +159,7 @@ class FormCreditCardSimpleRegister extends StatelessWidget {
                             _stateCreditCardSimpleRegister.validate();
                           },
                           buttonColor: Get.theme.primaryColor,
-                          buttonTitle: "Confirm",
+                          buttonTitle: formSimpleRegisterAddButton,
                         ),
                       ],
                     )

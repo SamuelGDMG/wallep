@@ -15,7 +15,7 @@ class LanguageModel {
 }
 
 class TranslationService extends Translations {
-  static final fallbackLocale = Locale('pt', 'US');
+  static final fallbackLocale = Locale('pt', 'PT');
 
   static final List<LanguageModel> languages = [
     LanguageModel("English", "en"),
