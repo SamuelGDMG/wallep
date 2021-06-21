@@ -26,7 +26,7 @@ const Map<String, String> errors = {
 const Map<String, String> onBoardingPage = {
   'onBoardingPageTitle1': 'App minimalista',
   'onBoardingPageTitle2': "Nós nos preocupamos com seu dinheiro!",
-  'onBoardingPageBody1': "Você ainda está usando papel para registrar suas despesas e receitas? Então, Wallep vai te ajudar com suas finanças!",
+  'onBoardingPageBody1': "Você ainda está usando papel para registrar suas despesas e rendas? Então, Wallep vai te ajudar com suas finanças!",
   'onBoardingPageBody2': "Assuma o controle de suas finanças com Wallep!",
   'onBoardingPageSkipButton': 'Pular',
   'onBoardingPageEnterButton': 'Entrar'
@@ -82,12 +82,14 @@ const Map<String, String> pt = {
   'textSummaryExpense': 'Despesa',
   'titleHomeSummaryChart': 'Estatistica',
   'titleHomeCreditCards': 'Cartões de crédito',
-  'titleHomeIncomesAndExpenses': 'Receitas e despesas',
+  'titleHomeIncomesAndExpenses': 'Rendas e despesas',
   'messageNoCreditCardHome': 'Pressione o botão para adicionar o seu primeiro cartão de crédito.',
   'messageNoSimpleRegisterHome': 'Pressione o botão para cadastrar uma despesa ou renda.',
   'cardSimpleRegisterExpense': 'Despesa',
   'cardSimpleRegisterIncome': 'Renda',
   'messageDontHaveAnyCheck': "Ops! Você não tem despesas ou rendas cadastradas nesse mês.",
+  'messageUploadFile': 'Salvando arquivo...',
+  'dialogUploadFileSuccess': 'Arquivo salvo!',
   'messageIndicator': 'Carregando...',
   'contact': 'Contato',
   'currency': 'R\$ ',
@@ -100,5 +102,6 @@ const Map<String, String> pt = {
   ...formSimpleRegister,
   ...onBoardingPage,
   ...signOut,
-  ...invoiceCredit
+  ...invoiceCredit,
+  ...resumeCreditCard
 };

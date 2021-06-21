@@ -24,6 +24,7 @@ class FormCreditCardSimpleRegister extends StatelessWidget {
   final formSimpleRegisterCancelButton = 'formSimpleRegisterCancelButton'.tr;
   final formSimpleRegisterTextExpense = 'formSimpleRegisterTextExpense'.tr;
   final formSimpleRegisterTextIncome = 'formSimpleRegisterTextIncome'.tr;
+  final confirmEditButtonFormCreditCard = 'confirmEditButtonFormCreditCard'.tr;
 
   final currency = 'currency'.tr;
 
@@ -37,7 +38,9 @@ class FormCreditCardSimpleRegister extends StatelessWidget {
     return Scaffold(
       backgroundColor: Get.theme.backgroundColor,
       appBar: AppBar(
-        title: Text(simpleRegister != null ? simpleRegister.name : 'cardSimpleRegisterExpense'.tr),
+        title: Text(simpleRegister != null ? simpleRegister.name : 'cardSimpleRegisterExpense'.tr, style: TextStyle(
+            color: Colors.white
+        )),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -147,6 +150,7 @@ class FormCreditCardSimpleRegister extends StatelessWidget {
                       children: [
                         Button(
                           onTap: (){
+                            Get.back();
                           },
                           buttonColor: Colors.red,
                           buttonTitle: formSimpleRegisterCancelButton,
@@ -159,7 +163,7 @@ class FormCreditCardSimpleRegister extends StatelessWidget {
                             _stateCreditCardSimpleRegister.validate();
                           },
                           buttonColor: Get.theme.primaryColor,
-                          buttonTitle: formSimpleRegisterAddButton,
+                          buttonTitle: simpleRegister != null ? confirmEditButtonFormCreditCard : formSimpleRegisterAddButton,
                         ),
                       ],
                     )

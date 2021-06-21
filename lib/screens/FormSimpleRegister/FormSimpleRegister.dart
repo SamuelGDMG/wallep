@@ -30,6 +30,7 @@ class FormSimpleRegister extends StatelessWidget {
   final formSimpleRegisterTextExpense = 'formSimpleRegisterTextExpense'.tr;
   final formSimpleRegisterTextIncome = 'formSimpleRegisterTextIncome'.tr;
   final currency = 'currency'.tr;
+  final confirmEditButtonFormCreditCard = 'confirmEditButtonFormCreditCard'.tr;
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +48,10 @@ class FormSimpleRegister extends StatelessWidget {
           Visibility(
             visible: simpleRegister != null,
               child: IconButton(
-            icon: Icon(Icons.delete),
-            onPressed: (){
-              _stateSystem.removeSimpleRegister(simpleRegister);
-            },
+                icon: Icon(Icons.delete),
+                onPressed: (){
+                  _stateSystem.removeSimpleRegister(simpleRegister);
+                },
           ))
         ],
         title: Obx(() => Text(_stateCreditCardSimpleRegister.isIncome.value == Constants.INCOME ? formSimpleRegisterTextIncome : formSimpleRegisterTextExpense, style: TextStyle(
@@ -198,6 +199,7 @@ class FormSimpleRegister extends StatelessWidget {
                       children: [
                         Button(
                           onTap: (){
+                            Get.back();
                           },
                           buttonColor: Colors.red,
                           buttonTitle: formSimpleRegisterCancelButton,
@@ -210,7 +212,7 @@ class FormSimpleRegister extends StatelessWidget {
                             _stateCreditCardSimpleRegister.validate();
                           },
                           buttonColor: Get.theme.primaryColor,
-                          buttonTitle: formSimpleRegisterAddButton,
+                          buttonTitle: simpleRegister != null ? confirmEditButtonFormCreditCard : formSimpleRegisterAddButton,
                         ),
                       ],
                     )

@@ -8,7 +8,6 @@ const Map<String, String> formCreditCard = {
   'confirmEditButtonFormCreditCard': 'Edit',
 };
 
-
 const Map<String, String> invoiceCredit = {
   'invoiceCreditCardTitle': 'Invoice',
   'invoiceCreditBills': 'Bills'
@@ -87,11 +86,11 @@ const Map<String, String> en = {
   'titleHomeIncomesAndExpenses': 'Incomes and Expenses',
   'messageNoCreditCardHome': 'Press the plus button to add a credit card.',
   'messageNoSimpleRegisterHome': 'Press the plus button to add a record',
-  'messageIndicator': 'Synchronizing',
+  'messageIndicator': 'Loading...',
   'cardSimpleRegisterExpense': 'Expense',
   'cardSimpleRegisterIncome': 'Income',
-  'messageDontHaveAnyCheck': "You don't have any income or expense to this month",
-  'messageUploadFile': 'Uploading file',
+  'messageDontHaveAnyCheck': "Ops!You don't have any income or expense to this month",
+  'messageUploadFile': 'Uploading file...',
   'dialogUploadFileSuccess': 'File saved!',
   'currency': '\$ ',
   'contact': 'Contact',

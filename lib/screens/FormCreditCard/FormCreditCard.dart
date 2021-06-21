@@ -15,6 +15,7 @@ class FormCreditCard extends StatelessWidget {
   final labelLimitDescriptionFormCreditCard = 'labelLimitDescriptionFormCreditCard'.tr;
   final cancelButtonFormCreditCard = 'cancelButtonFormCreditCard'.tr;
   final addButtonFormCreditCard = 'addButtonFormCreditCard'.tr;
+  final confirmEditButtonFormCreditCard = 'confirmEditButtonFormCreditCard'.tr;
   final minDate = DateTime(2019);
 
   final currency = 'currency'.tr;
@@ -81,6 +82,7 @@ class FormCreditCard extends StatelessWidget {
                         children: [
                           Button(
                             onTap: (){
+                              Get.back();
                             },
                             buttonColor: Colors.red,
                             buttonTitle: cancelButtonFormCreditCard,
@@ -93,7 +95,7 @@ class FormCreditCard extends StatelessWidget {
                               _stateFormCreditCard.validate();
                             },
                             buttonColor: Get.theme.primaryColor,
-                            buttonTitle: addButtonFormCreditCard,
+                            buttonTitle: creditCard != null ? confirmEditButtonFormCreditCard : addButtonFormCreditCard,
                           ),
                         ],
                       )
