@@ -5,10 +5,14 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class DialogDatePicker extends StatelessWidget {
 
-  final dialogTitle = "Calendar";
+  final dialogTitle = "CalendarTitle".tr;
   final minDate = DateTime(2019);
 
-  final StateSystem _stateSystem = Get.find();
+  final Function selectDate;
+
+  final DateTime dateTimeSelected;
+
+  DialogDatePicker({required this.selectDate, required this.dateTimeSelected});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +23,9 @@ class DialogDatePicker extends StatelessWidget {
         child: Container(
           height: 250,
           child: SfDateRangePicker(
-              initialSelectedDate: _stateSystem.getDateTimeSelected,
+              initialSelectedDate: dateTimeSelected,
             onSelectionChanged: (DateRangePickerSelectionChangedArgs e){
-              _stateSystem.changeSelectedDate(e);
+              selectDate(e);
               Get.back();
             },
             minDate: minDate,
@@ -44,7 +48,7 @@ class DialogDatePicker extends StatelessWidget {
       ),
       actions: [
         TextButton(
-          child: Text("Cancel", style: TextStyle(
+          child: Text("buttonCancelDialogSalary".tr, style: TextStyle(
             color: Get.theme.primaryColor
           ),),
           onPressed: (){

@@ -1,15 +1,59 @@
 const Map<String, String> formCreditCard = {
-  'formTitleCreditCard': 'Credit card',
-  'labelTextDescriptionFormCreditCard': 'Description',
-  'defaultValidatorDescriptionFormCreditCard': 'You need add a description',
-  'labelLimitDescriptionFormCreditCard': 'Limit',
-  'cancelButtonFormCreditCard': 'Cancel',
-  'addButtonFormCreditCard': 'Add',
-  'confirmEditButtonFormCreditCard': 'Edit',
+  'formTitleCreditCard': 'Cartão de crédito',
+  'labelTextDescriptionFormCreditCard': 'Descrição',
+  'defaultValidatorDescriptionFormCreditCard': 'Você precisa adicionar uma descrição',
+  'labelLimitDescriptionFormCreditCard': 'Limite',
+  'cancelButtonFormCreditCard': 'Cancelar',
+  'addButtonFormCreditCard': 'Adicionar',
+  'confirmEditButtonFormCreditCard': 'Editar',
+};
+
+const Map<String, String> resumeCreditCard = {
+  'resumeCreditCardTitle': 'Cartão de crédito',
+  'resumeCreditCardLabelRegisterInstallment': 'First installment: ',
+  'resumeCreditCardNoRegisters': "Ops! Você não tem uma fatura para este mês!"
+};
+
+const Map<String, String> invoiceCredit = {
+  'invoiceCreditCardTitle': 'Fatura',
+  'invoiceCreditBills': 'Contas'
+};
+
+const Map<String, String> errors = {
+  'noNetwork': 'Você precisa estar conectado à rede!'
+};
+
+const Map<String, String> onBoardingPage = {
+  'onBoardingPageTitle1': 'App minimalista',
+  'onBoardingPageTitle2': "Nós nos preocupamos com seu dinheiro!",
+  'onBoardingPageBody1': "Você ainda está usando papel para registrar suas despesas e rendas? Então, Wallep vai te ajudar com suas finanças!",
+  'onBoardingPageBody2': "Assuma o controle de suas finanças com Wallep!",
+  'onBoardingPageSkipButton': 'Pular',
+  'onBoardingPageEnterButton': 'Entrar'
+};
+
+const Map<String, String> signOut = {
+  'signOutErrorSavingFileOnDrive': "Não foi possível salvar os dados no drive. Você deve tentar mais tarde ou pode sair sem salvar! \nSe o erro aparecer novamente, entre em contato com o desenvolvedor antes de sair.",
+  'signOutNoNetWorking': "Você não está conectado à rede. Você deve tentar mais tarde ou pode sair sem salvar!",
+  'signOutButtonTryLater': 'Tentar mais tarde',
+  'signOutButtonWithoutSaving': 'Sair sem salvar'
+};
+
+const Map<String, String> formSimpleRegister = {
+  'formSimpleRegisterLabelCheckBox': 'Depensa ou renda?',
+  'formSimpleRegisterLabelDescription': 'Descrição',
+  'formSimpleRegisterLabelPrice': 'Valor/parcela',
+  'formSimpleRegisterLabelCalendar': 'Data da primeira parcela',
+  'formSimpleRegisterLabelInstallments': 'Parcelas',
+  'formSimpleRegisterValidationDescription': 'Você precisa adicionar uma descrição',
+  'formSimpleRegisterAddButton': 'Adicionar',
+  'formSimpleRegisterCancelButton': 'Cancelar',
+  'formSimpleRegisterTextExpense': 'Despesa',
+  'formSimpleRegisterTextIncome': 'Renda'
 };
 
 const Map<String, String> bottomBar = {
-  'bottomHome': 'Home',
+  'bottomHome': 'Principal',
   'bottomCheckRegistersMonth': 'Resumo',
   'bottomSettings': 'Configurações'
 };
@@ -38,15 +82,26 @@ const Map<String, String> pt = {
   'textSummaryExpense': 'Despesa',
   'titleHomeSummaryChart': 'Estatistica',
   'titleHomeCreditCards': 'Cartões de crédito',
-  'titleHomeIncomesAndExpenses': 'Receitas e despesas',
-  'messageNoCreditCardHome': 'Pressione o botão de adição para adicionar um cartão de crédito.',
-  'messageNoSimpleRegisterHome': 'Pressione o botão de adição para adicionar um registro simples',
+  'titleHomeIncomesAndExpenses': 'Rendas e despesas',
+  'messageNoCreditCardHome': 'Pressione o botão para adicionar o seu primeiro cartão de crédito.',
+  'messageNoSimpleRegisterHome': 'Pressione o botão para cadastrar uma despesa ou renda.',
   'cardSimpleRegisterExpense': 'Despesa',
   'cardSimpleRegisterIncome': 'Renda',
-  'messageDontHaveAnyCheck': "You don't have any income or expense to this month",
-  'messageIndicator': 'Sincronizando',
+  'messageDontHaveAnyCheck': "Ops! Você não tem despesas ou rendas cadastradas nesse mês.",
+  'messageUploadFile': 'Salvando arquivo...',
+  'dialogUploadFileSuccess': 'Arquivo salvo!',
+  'messageIndicator': 'Carregando...',
   'contact': 'Contato',
   'currency': 'R\$ ',
-  ...formCreditCard,
+  'subject': '[Wallep]-',
+  'loginButton': 'Entrar com GOOGLE',
+  'dialogRemoveCreditCardMessage': 'Se você excluir este cartão de crédito, você excluirá todas as despesas juntas!',
+  'CalendarTitle': 'Calendário',
   ...bottomBar,
+  ...formCreditCard,
+  ...formSimpleRegister,
+  ...onBoardingPage,
+  ...signOut,
+  ...invoiceCredit,
+  ...resumeCreditCard
 };

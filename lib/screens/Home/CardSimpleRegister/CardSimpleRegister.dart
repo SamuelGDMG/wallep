@@ -60,7 +60,7 @@ class CardSimpleRegister extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Expanded(
+                  Flexible(
                     flex: 1,
                     child: Container(
                       child: Text(register.name,
@@ -69,7 +69,7 @@ class CardSimpleRegister extends StatelessWidget {
                           ),
                           textAlign:
                           TextAlign.start,
-                          maxLines: 2,
+                          maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),

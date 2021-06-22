@@ -85,7 +85,8 @@ class StateCreditCardSimpleRegister extends GetxController {
         lastInstallment: lastInstallment(),
         idCategory: idCreditCard,
         name: controllerName.value.value.text,
-        firstInstallment: MonthSalary.getDateByMonthAndYear(date: dateTime.millisecondsSinceEpoch)
+        firstInstallment: MonthSalary.getDateByMonthAndYear(date: dateTime.millisecondsSinceEpoch),
+      check: simpleRegisterInitialData.check
     );
 
     simpleRegister.price = total;

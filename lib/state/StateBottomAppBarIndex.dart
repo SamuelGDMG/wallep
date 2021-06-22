@@ -6,4 +6,5 @@ class StateBottomAppBarIndex extends GetxController {
   void setBottomAppBarIndex(int value) {
     activeIndex.value = value;
   }
+
 }

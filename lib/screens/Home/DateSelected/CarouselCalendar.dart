@@ -21,7 +21,7 @@ class DateSelected extends StatelessWidget {
         InkWell(
           borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
           onTap: (){
-            Get.dialog(DialogDatePicker());
+            Get.dialog(DialogDatePicker(dateTimeSelected: _stateSystem.getDateTimeSelected, selectDate:(e) => _stateSystem.changeSelectedDate(e),));
           },
           child: Obx((){
 

@@ -8,6 +8,18 @@ const Map<String, String> formCreditCard = {
   'confirmEditButtonFormCreditCard': 'Edit',
 };
 
+const Map<String, String> invoiceCredit = {
+  'invoiceCreditCardTitle': 'Invoice',
+  'invoiceCreditBills': 'Bills'
+};
+
+const Map<String, String> signOut = {
+  'signOutErrorSavingFileOnDrive': "It wasn't possible to save the data on drive. You Should try later or you can sign out without saving! \nIf the error appears again, contact the dev before you sign out.",
+  'signOutNoNetWorking': "You aren't connected to the network. You should try later or you can sign out without saving!",
+  'signOutButtonTryLater': 'To try later',
+  'signOutButtonWithoutSaving': 'Sign Out'
+};
+
 const Map<String, String> bottomBar = {
   'bottomHome': 'Home',
   'bottomCheckRegistersMonth': 'Check',
@@ -15,7 +27,7 @@ const Map<String, String> bottomBar = {
 };
 
 const Map<String, String> formSimpleRegister = {
-  'formSimpleRegisterLabelCheckBox': 'Choose the type',
+  'formSimpleRegisterLabelCheckBox': 'Income or expense?',
   'formSimpleRegisterLabelDescription': 'Description',
   'formSimpleRegisterLabelPrice': 'Price by installment',
   'formSimpleRegisterLabelCalendar': 'Which month will you start to pay?',
@@ -36,7 +48,7 @@ const Map<String, String> errors = {
 const Map<String, String> resumeCreditCard = {
   'resumeCreditCardTitle': 'Credit Card',
   'resumeCreditCardLabelRegisterInstallment': 'First installment: ',
-  'resumeCreditCardNoRegisters': "You don't have any registers in this credit card"
+  'resumeCreditCardNoRegisters': "Ops! You don't have an invoice for this month!"
 };
 
 const Map<String, String> onBoardingPage = {
@@ -74,20 +86,23 @@ const Map<String, String> en = {
   'titleHomeIncomesAndExpenses': 'Incomes and Expenses',
   'messageNoCreditCardHome': 'Press the plus button to add a credit card.',
   'messageNoSimpleRegisterHome': 'Press the plus button to add a record',
-  'messageIndicator': 'Synchronizing',
+  'messageIndicator': 'Loading...',
   'cardSimpleRegisterExpense': 'Expense',
   'cardSimpleRegisterIncome': 'Income',
-  'messageDontHaveAnyCheck': "You don't have any income or expense to this month",
-  'messageUploadFile': 'Uploading file',
+  'messageDontHaveAnyCheck': "Ops!You don't have any income or expense to this month",
+  'messageUploadFile': 'Uploading file...',
   'dialogUploadFileSuccess': 'File saved!',
   'currency': '\$ ',
   'contact': 'Contact',
   'subject': '[Wallep]-',
   'loginButton': 'Login with google',
   'dialogRemoveCreditCardMessage': 'If you delete this credit card you gonna delete all record together!',
+  'CalendarTitle': 'Calendar',
   ...bottomBar,
   ...formCreditCard,
   ...formSimpleRegister,
   ...resumeCreditCard,
   ...onBoardingPage,
+  ...signOut,
+  ...invoiceCredit
 };

@@ -1,5 +1,6 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:finance/Dialogs/DialogAlert.dart';
+import 'package:finance/Dialogs/DialogSignOut.dart';
 import 'package:finance/Dialogs/DialogSynchronizing.dart';
 import 'package:finance/database/AppDatabase.dart';
 import 'package:finance/database/CategoryDao.dart';
@@ -9,6 +10,7 @@ import 'package:finance/database/SimpleRegisterDao.dart';
 import 'package:finance/routes/app_pages.dart';
 import 'package:finance/service/drive/FilesDrive.dart';
 import 'package:finance/service/user/user_firebase.dart';
+import 'package:finance/state/StateBottomAppBarIndex.dart';
 import 'package:finance/utils/Constants.dart';
 import 'package:finance/utils/StorageUtil.dart';
 import 'package:flutter/material.dart';
@@ -32,9 +34,7 @@ class StateLogin extends GetxController {
    try{
      var response = await _userFirebase.signInWithGoogle();
      if(response == null){
-       Get.dialog(
-         DialogAlert(message: 'tryAgainMsg'.tr, icon: Icons.error_outline,),
-       );
+
      }else if (!connection){
        Get.dialog(
          DialogAlert(message: 'noNetwork'.tr, icon: Icons.network_wifi,),
@@ -72,12 +72,51 @@ class StateLogin extends GetxController {
   }
 
   Future signOut() async {
+
+    final connection = await getConnectivity();
+
+    if(connection){
+      try{
+        Get.dialog(
+            DialogSynchronizing(upload: true,),
+            barrierDismissible: false
+        );
+        await readyToUploadFile();
+
+        await readyToSignOut();
+      }catch(e){
+        Get.back();
+        Get.dialog(
+          DialogSignOut(message: 'signOutErrorSavingFileOnDrive'.tr, icon: Icons.error_outline,),
+        );
+      }
+    }else{
+      Get.dialog(
+        DialogSignOut(message: 'signOutNoNetWorking'.tr, icon: Icons.wifi_off,),
+      );
+    }
+
+  }
+
+  Future signingOutWithoutSaveOnDrive() async {
+    await readyToSignOut();
+  }
+
+  Future readyToSignOut() async {
+    await Future.wait([
+      SimpleRegisterDao().clearWholeStore(),
+      MonthSalaryDao().clearWholeStore(),
+      CategoryDao().clearWholeStore(),
+      CreditCardDao().clearWholeStore()
+    ]);
+
     await _userFirebase.signOut();
-    await SimpleRegisterDao().clearWholeStore();
-    await MonthSalaryDao().clearWholeStore();
-    await CategoryDao().clearWholeStore();
-    await CreditCardDao().clearWholeStore();
+
+    StateBottomAppBarIndex _stateBottomAppBarIndex = Get.find();
+
     Get.offAllNamed(Routes.LOGIN);
+
+    _stateBottomAppBarIndex.setBottomAppBarIndex(0);
   }
 
   Future<bool> getConnectivity() async {
@@ -89,19 +128,24 @@ class StateLogin extends GetxController {
     return false;
   }
 
+  Future readyToUploadFile() async {
+      final getIdFile = StorageUtil.getString(Constants.KEY_ID_File_DRIVE);
+      FilesDrive filesDrive = FilesDrive();
+
+      await filesDrive.uploadFile(idFile: getIdFile);
+  }
+
   Future uploadFile() async {
-    FilesDrive filesDrive = FilesDrive();
 
     final connection = await getConnectivity();
 
     if(connection){
-      final getIdFile = StorageUtil.getString(Constants.KEY_ID_File_DRIVE);
       Get.dialog(
           DialogSynchronizing(upload: true,),
           barrierDismissible: false
       );
       try{
-        await filesDrive.uploadFile(idFile: getIdFile);
+        await readyToUploadFile();
         Get.back();
         Get.dialog(
           DialogAlert(message: 'dialogUploadFileSuccess'.tr, icon: Icons.check,),
@@ -114,7 +158,7 @@ class StateLogin extends GetxController {
       }
     }else{
       Get.dialog(
-        DialogAlert(message: 'noNetwork'.tr, icon: Icons.network_wifi,),
+        DialogAlert(message: 'noNetwork'.tr, icon: Icons.wifi_off,),
       );
     }
   }
